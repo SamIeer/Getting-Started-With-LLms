@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prompt Engineering Chatbot</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
+        input[type="range"] { width: 100%; }
+    </style>
+</head>
+<body>
+
+<h2>Prompt Engineering Playground (Flask)</h2>
+
+<form method="POST">
+
+    <textarea name="prompt" rows="4" style="width:100%" placeholder="Enter your message..."></textarea><br><br>
+
+    Temperature: <span id="tempVal">1.0</span>
+    <input type="range" name="temperature" min="0" max="2" value="1.0" step="0.1"
+           oninput="tempVal.innerText = this.value"><br><br>
+
+    Top-p: <span id="pVal">1.0</span>
+    <input type="range" name="top_p" min="0" max="1" value="1.0" step="0.05"
+           oninput="pVal.innerText = this.value"><br><br>
+
+    Top-k: <span id="kVal">50</span>
+    <input type="range" name="top_k" min="1" max="200" value="50" step="1"
+           oninput="kVal.innerText = this.value"><br><br>
+
+    <label><input type="checkbox" name="cot"> Show reasoning (Chain of Thought)</label><br><br>
+
+    <button type="submit">Generate Response</button>
+</form>
+
+{% if response %}
+<hr>
+<h3>Output:</h3>
+<p>{{ response }}</p>
+{% endif %}
+
+</body>
+</html>
